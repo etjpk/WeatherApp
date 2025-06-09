@@ -53,6 +53,10 @@ class _HomePage2State extends State<HomePage2> {
                       _selectedCity = city;
                     });
                   },
+                  style: FilledButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 24, 255, 32),
+                    foregroundColor: const Color.fromARGB(255, 10, 6, 45),
+                  ),
                   child: Text(city),
                 );
               }).toList(),
@@ -69,7 +73,10 @@ class _HomePage2State extends State<HomePage2> {
                   );
                 }
               },
-
+              style: FilledButton.styleFrom(
+                backgroundColor: Colors.cyanAccent,
+                foregroundColor: const Color.fromARGB(255, 10, 6, 45),
+              ),
               child: Text('Fetch Weather'),
             ),
             // Optional: Add location button here

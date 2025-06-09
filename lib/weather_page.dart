@@ -61,26 +61,129 @@ class _WeatherPageState extends State<WeatherPage> {
       appBar: AppBar(title: Text('${widget.city} Weather')),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (widget.city == 'Delhi')
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Image.asset(
+                  'assets/icon/delhi.png', // Path to your Delhi image
+                  height: 150,
+                ),
+              ),
+            if (widget.city == 'Mumbai')
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Image.asset(
+                  'assets/icon/mumbai.png', // Path to your Delhi image
+                  height: 150,
+                ),
+              ),
+            if (widget.city == 'Sikar')
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Image.asset(
+                  'assets/icon/sikar.png', // Path to your Delhi image
+                  height: 150,
+                ),
+              ),
+
+            if (widget.city == 'Jaipur')
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Image.asset(
+                  'assets/icon/jaipur.png', // Path to your Delhi image
+                  height: 150,
+                ),
+              ),
+            if (widget.city == 'Bengaluru')
+              Padding(
+                padding: EdgeInsets.only(bottom: 20),
+                child: Image.asset(
+                  'assets/icon/banglore.png', // Path to your Delhi image
+                  height: 150,
+                ),
+              ),
             Text('City: ${widget.city}', style: TextStyle(fontSize: 24)),
-            Text(
-              'Temperature: ${weatherData!['main']['temp']}°C',
-              style: TextStyle(fontSize: 24),
+            Divider(thickness: 1, color: Colors.grey[400]),
+            Row(
+              children: [
+                Text(
+                  'Temperature: ${weatherData!['main']['temp']}°C',
+                  style: TextStyle(fontSize: 24),
+                ),
+                Image.asset(
+                  width: 20,
+                  height: 20,
+                  'assets/icon/temperature.png',
+                  colorBlendMode: BlendMode.multiply,
+                ),
+              ],
             ),
-            Text(
-              'Condition: ${weatherData!['weather'][0]['main']}',
-              style: TextStyle(fontSize: 24),
+            Divider(thickness: 1, color: Colors.grey[400]),
+            Row(
+              children: [
+                Text(
+                  'Condition: ${weatherData!['weather'][0]['main']}',
+                  style: TextStyle(fontSize: 24),
+                ),
+                Image.asset(
+                  width: 20,
+                  height: 20,
+                  'assets/icon/conditions.png',
+                  colorBlendMode: BlendMode.multiply,
+                ),
+              ],
             ),
-            Text(
-              'Wind Speed: ${weatherData!['wind']['speed']} m/s',
-              style: TextStyle(fontSize: 24),
+            Divider(thickness: 1, color: Colors.grey[400]),
+            Row(
+              children: [
+                Text(
+                  'Wind Speed: ${weatherData!['wind']['speed']} m/s',
+                  style: TextStyle(fontSize: 24),
+                ),
+                Image.asset(
+                  width: 20,
+                  height: 20,
+                  'assets/icon/wind.png',
+                  colorBlendMode: BlendMode.multiply,
+                ),
+              ],
             ),
-            Text(
-              'Condition: ${weatherData!['weather'][0]['main']}',
-              style: TextStyle(fontSize: 24),
+            Divider(thickness: 1, color: Colors.grey[400]),
+            Row(
+              children: [
+                Text(
+                  'Humidity: ${weatherData!['main']['humidity']}%',
+                  style: TextStyle(fontSize: 24),
+                ),
+
+                Image.asset(
+                  width: 20,
+                  height: 20,
+                  'assets/icon/humidity.png',
+                  colorBlendMode: BlendMode.multiply,
+                ),
+              ],
             ),
+            Divider(thickness: 1, color: Colors.grey[400]),
+            Row(
+              children: [
+                Text(
+                  'Air Quality Index: ${weatherData!['airQuality']}',
+                  style: TextStyle(fontSize: 24),
+                ),
+
+                Image.asset(
+                  width: 20,
+                  height: 20,
+                  'assets/icon/air_quality.png',
+                  colorBlendMode: BlendMode.multiply,
+                ),
+              ],
+            ),
+            Divider(thickness: 1, color: Colors.grey[400]),
             // Add more details as needed
           ],
         ),

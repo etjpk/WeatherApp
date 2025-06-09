@@ -68,7 +68,16 @@ flutter:
     - assets/icon/beans.png
     - assets/icon/plant.png
     - assets/icon/sugar.png
-    
+    - assets/icon/delhi.png
+    - assets/icon/mumbai.png
+    - assets/icon/jaipur.png 
+    - assets/icon/sikar.png
+    - assets/icon/banglore.png
+    - assets/icon/humidity.png
+    - assets/icon/temperature.png
+    - assets/icon/wind.png
+    - assets/icon/air_quality.png
+    - assets/icon/conditions.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
