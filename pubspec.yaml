@@ -34,6 +34,8 @@ dependencies:
   get: ^4.6.6
   http: ^0.13.3
   intl: ^0.18.1
+  firebase_core: ^3.13.1
+  firebase_auth: ^5.5.4
 
 dev_dependencies:
   flutter_test:
@@ -77,7 +79,9 @@ flutter:
     - assets/icon/temperature.png
     - assets/icon/wind.png
     - assets/icon/air_quality.png
-    - assets/icon/conditions.png
+    - assets/icon/apple.png
+    - assets/icon/google.png
+    
 
   # To add assets to your application, add an assets section, like this:
   # assets:
