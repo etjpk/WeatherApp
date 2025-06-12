@@ -47,7 +47,7 @@ class _RegisterPageState extends State<RegisterPage> {
     } on FirebaseAuthException catch (e) {
       //wrong email
       Navigator.pop(context);
-      showErrorMessage(e.code);
+      print(e.code);
     }
     // pop the circle
   }

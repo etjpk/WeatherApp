@@ -8,13 +8,27 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  if (Firebase.apps.isEmpty) {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+  try {
+    if (Firebase.apps.isEmpty) {
+      await Firebase.initializeApp(
+        options: DefaultFirebaseOptions.currentPlatform,
+      );
+    }
+  } catch (e) {
+    print('Firebase initialization error: $e');
   }
   runApp(const MyApp());
 }
+
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   if (Firebase.apps.isEmpty) {
+//     await Firebase.initializeApp(
+//       options: DefaultFirebaseOptions.currentPlatform,
+//     );
+//   }
+//   runApp(const MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
