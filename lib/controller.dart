@@ -1,32 +1,32 @@
-import 'package:get/get.dart';
-// import 'package:application_journey/home_page.dart';
-import 'package:flutter/material.dart';
-// import 'first_page.dart';
 // import 'package:get/get.dart';
-// import 'home_page.dart';
-// import 'second_page.dart';
-import 'home_page2.dart';
+// // import 'package:application_journey/home_page.dart';
+// import 'package:flutter/material.dart';
+// // import 'first_page.dart';
+// // import 'package:get/get.dart';
+// // import 'home_page.dart';
+// // import 'second_page.dart';
+// import 'home_page2.dart';
 
-void main() {
-  runApp(const WeatherNowApp());
-}
+// void main() {
+//   runApp(const WeatherNowApp());
+// }
 
-class WeatherNowApp extends StatelessWidget {
-  const WeatherNowApp({super.key});
+// class WeatherNowApp extends StatelessWidget {
+//   const WeatherNowApp({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'WeatherNow',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: HomePage2(),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return GetMaterialApp(
+//       title: 'WeatherNow',
+//       debugShowCheckedModeBanner: false,
+//       theme: ThemeData(
+//         primaryColor: Colors.blue,
+//         visualDensity: VisualDensity.adaptivePlatformDensity,
+//       ),
+//       home: HomePage2(),
+//     );
+//   }
+// }
 // class MyApp extends StatelessWidget {
 //   const MyApp({super.key});
 
@@ -144,16 +144,16 @@ class WeatherNowApp extends StatelessWidget {
 //   }
 // }
 
-class CounterController extends GetxController {
-  RxInt count = 0.obs;
+// class CounterController extends GetxController {
+//   RxInt count = 0.obs;
 
-  void increaseValue() {
-    count++;
-    count;
-    update();
-  }
+//   void increaseValue() {
+//     count++;
+//     count;
+//     update();
+//   }
 
-  void decreaseValue() {
-    count--;
-  }
-}
+//   void decreaseValue() {
+//     count--;
+//   }
+// }

@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "88831933476",
-    "project_id": "myfirstflutterappjourney",
-    "storage_bucket": "myfirstflutterappjourney.firebasestorage.app"
+    "project_number": "754442671201",
+    "project_id": "myfirstflutterapp-28722",
+    "storage_bucket": "myfirstflutterapp-28722.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:88831933476:android:2cae12126bb803944bacb1",
+        "mobilesdk_app_id": "1:754442671201:android:eb4c4b3fd14584f30d4620",
         "android_client_info": {
-          "package_name": "com.example.my_first_flutter_app"
+          "package_name": "com.example.application_journey"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAzCFnzAux_6QNIOaDGwciFCgBNSgOyQVs"
+          "current_key": "AIzaSyBY9FBd4lJ9sslQ2PVyC1yNUBl6cSan98Y"
         }
       ],
       "services": {
