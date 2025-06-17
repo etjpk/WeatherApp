@@ -1,3 +1,4 @@
+import 'package:application_journey/Services/auth_service.dart';
 import 'package:application_journey/my_button.dart';
 import 'package:application_journey/my_textfile.dart';
 import 'package:application_journey/square_tile.dart';
@@ -138,9 +139,15 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SquareTile(imagePath: 'assets/icon/apple.png'),
+                    SquareTile(
+                      onTap: () => AuthService().signInwithGoogle(),
+                      imagePath: 'assets/icon/google.png',
+                    ),
                     SizedBox(height: 10),
-                    SquareTile(imagePath: 'assets/icon/google.png'),
+                    // SquareTile(
+                    //   onTap: () {},
+                    //   imagePath: 'assets/icon/apple.png',
+                    // ),
                   ],
                 ),
                 //google + apple sign in buttons

@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:application_journey/home_page.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:application_journey/Services/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -150,9 +151,15 @@ class _RegisterPageState extends State<RegisterPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SquareTile(imagePath: 'assets/icon/apple.png'),
+                    // SquareTile(
+                    //   onTap: () => AuthService().signInwithGoogle(),
+                    //   imagePath: 'assets/icon/apple.png',
+                    // ),
                     SizedBox(height: 10),
-                    SquareTile(imagePath: 'assets/icon/google.png'),
+                    SquareTile(
+                      onTap: () => AuthService().signInwithGoogle(),
+                      imagePath: 'assets/icon/google.png',
+                    ),
                   ],
                 ),
                 //google + apple sign in buttons
