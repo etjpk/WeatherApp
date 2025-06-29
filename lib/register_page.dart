@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:application_journey/Services/auth_service.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:application_journey/screens/explore_screen.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -16,12 +18,22 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  bool _isGoogleLoading = false;
   final emailController = TextEditingController();
 
   final passwordController = TextEditingController();
   final confirmpasswordController = TextEditingController();
+  final nameController = TextEditingController();
+  final usernameController = TextEditingController();
 
   // show loading circle
+  void _clearFields() {
+    emailController.clear();
+    passwordController.clear();
+    confirmpasswordController.clear();
+    nameController.clear();
+    usernameController.clear();
+  }
 
   // sign user in
   void signUserUp() async {
@@ -32,25 +44,82 @@ class _RegisterPageState extends State<RegisterPage> {
       },
     );
 
-    // try creating the user
     try {
-      // check if password is confirmed
-      if (passwordController.text == confirmpasswordController.text) {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: emailController.text,
-          password: passwordController.text,
-        );
-      } else {
-        // show error meassage
-        showErrorMessage('Password don\'t Match');
+      // Validate inputs
+      if (nameController.text.trim().isEmpty) {
+        Navigator.pop(context);
+        showErrorMessage('Please enter your name');
+        return;
       }
-      Navigator.pop(context);
+
+      if (usernameController.text.trim().isEmpty) {
+        Navigator.pop(context);
+        showErrorMessage('Please enter a username');
+        return;
+      }
+
+      // Check if password is confirmed
+      if (passwordController.text == confirmpasswordController.text) {
+        // Create Firebase Auth user
+        final userCredential = await FirebaseAuth.instance
+            .createUserWithEmailAndPassword(
+              email: emailController.text,
+              password: passwordController.text,
+            );
+
+        // Create Firestore user document
+        await FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredential.user!.uid)
+            .set({
+              'id': userCredential.user!.uid,
+              'name': nameController.text.trim(),
+              'username': usernameController.text.trim(),
+              'email': emailController.text.trim(),
+              'profileImageUrl': '',
+              'bio': '',
+              'followers': [],
+              'following': [],
+              'lastUpdated': FieldValue.serverTimestamp(),
+            });
+
+        Navigator.pop(context);
+
+        // Show success message
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Account created successfully!')),
+        );
+        // Add navigation here:
+        await Future.delayed(const Duration(milliseconds: 300));
+        _clearFields(); // Clear all input fields
+        if (mounted) {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => ExploreScreen()),
+          );
+        }
+      } else {
+        Navigator.pop(context);
+        showErrorMessage('Passwords don\'t match');
+      }
     } on FirebaseAuthException catch (e) {
-      //wrong email
       Navigator.pop(context);
-      print(e.code);
+
+      // Better error handling
+      String errorMessage = 'An error occurred';
+      if (e.code == 'weak-password') {
+        errorMessage = 'Password is too weak';
+      } else if (e.code == 'email-already-in-use') {
+        errorMessage = 'Email is already registered';
+      } else if (e.code == 'invalid-email') {
+        errorMessage = 'Invalid email format';
+      }
+
+      showErrorMessage(errorMessage);
+    } catch (e) {
+      Navigator.pop(context);
+      showErrorMessage('Failed to create account: $e');
     }
-    // pop the circle
   }
 
   void showErrorMessage(String message) {
@@ -70,6 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.grey[200],
       body: SafeArea(
         child: Center(
@@ -87,6 +157,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 SizedBox(height: 20),
                 //welcome back you've been missed
+                // Add these BEFORE the email field
+                MyTextField(
+                  controller: nameController,
+                  hintText: 'Full Name',
+                  obscureText: false,
+                ),
+                SizedBox(height: 10),
+
+                MyTextField(
+                  controller: usernameController,
+                  hintText: 'Username',
+                  obscureText: false,
+                ),
+                SizedBox(height: 10),
                 MyTextField(
                   controller: emailController,
                   hintText: 'Email',
@@ -157,8 +241,27 @@ class _RegisterPageState extends State<RegisterPage> {
                     // ),
                     SizedBox(height: 10),
                     SquareTile(
-                      onTap: () => AuthService().signInwithGoogle(),
+                      onTap: _isGoogleLoading
+                          ? null // Disable when loading
+                          : () async {
+                              setState(() => _isGoogleLoading = true);
+                              await AuthService(context).signInwithGoogle();
+                              setState(() => _isGoogleLoading = false);
+                              // Add navigation for consistency
+                              if (mounted) {
+                                Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ExploreScreen(),
+                                  ),
+                                );
+                              }
+                            },
+
                       imagePath: 'assets/icon/google.png',
+                      // child: _isGoogleLoading
+                      // ? CircularProgressIndicator(color: Colors.white) // Show spinner
+                      // : null,
                     ),
                   ],
                 ),

@@ -30,14 +30,46 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  flutter_localizations:
+    sdk: flutter
+
   cupertino_icons: ^1.0.8
   get: ^4.6.6
-  http: ^0.13.3
-  intl: ^0.18.1
+  http: ^0.13.5
+  intl: ^0.20.2
   firebase_core: ^3.14.0
   firebase_auth: ^5.5.4
   google_sign_in: ^6.3.0
   cloud_firestore: ^5.6.9
+  cached_network_image: ^3.3.1
+  image_picker: ^1.0.4
+  firebase_storage: ^12.4.7
+  flutter_quill: ^11.4.1
+  firebase_messaging: ^15.1.6
+  carousel_slider: ^5.0.0
+# dependencies:
+#   flutter:
+#     sdk: flutter
+
+
+#   flutter_localizations:
+#     sdk: flutter
+
+
+#   cupertino_icons: ^1.0.8
+#   get: ^4.6.6
+#   http: ^0.13.5
+
+#   intl: ^0.20.2
+#   firebase_core: ^3.14.0
+#   firebase_auth: ^5.5.4
+#   google_sign_in: ^6.3.0
+#   cloud_firestore: ^5.6.9
+#   cached_network_image: ^3.3.1
+#   image_picker: ^1.0.4
+#   firebase_storage: ^12.4.7
+#   flutter_quill: ^11.4.1
 
 dev_dependencies:
   flutter_test:

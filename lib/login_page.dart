@@ -140,7 +140,7 @@ class _LoginPageState extends State<LoginPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SquareTile(
-                      onTap: () => AuthService().signInwithGoogle(),
+                      onTap: () => AuthService(context).signInwithGoogle(),
                       imagePath: 'assets/icon/google.png',
                     ),
                     SizedBox(height: 10),
